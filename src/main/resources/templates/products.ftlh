@@ -6,7 +6,11 @@
     </title>
 </head>
 <body>
-<h1>MARKETPLACE</h1>
+<h1>MARKETPLACE | <a href="/login">Enter</a></h1>
+<form action="/logout" method="post">
+    <input type="hidden" name="_csrf" value="${_csrf.token}">
+    <input type="submit" value="log out">
+</form>
 <h4>goods from all over Ukraine</h4>
 <form action="/" method="get">
     search by ad name:<input type="text" name="title"><br>
@@ -17,7 +21,7 @@
         <p><b>${product.title}</b> ${product.price} ua. | <a href="/product/${product.id}">Подробнее...</a></p>
     </div>
 <#else>
-        <h3>No ad</h3>
+    <h3>No ad</h3>
 </#list>
 <hr>
 <h3>Create new product</h3>
