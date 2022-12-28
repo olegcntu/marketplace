@@ -9,7 +9,7 @@
 <form action="/registration" method="post">
     User name: <input type="text" name="name"><br><br>
     E-mail: <input type="email" name="email"><br><br>
-    Telephone number: <input type="text" name="numberPhone"><br><br>
+    Telephone number: <input type="text" name="phoneNumber"><br><br>
     Password: <input type="password" name="password"><br><br>
     <input type="hidden" name="_csrf" value="${_csrf.token}">
     <input type="submit" value="Registration"/>

@@ -6,11 +6,19 @@
     </title>
 </head>
 <body>
-<h1>MARKETPLACE | <a href="/login">Enter</a></h1>
-<form action="/logout" method="post">
-    <input type="hidden" name="_csrf" value="${_csrf.token}">
-    <input type="submit" value="log out">
-</form>
+<h1>MARKETPLACE</h1>
+<hr>
+<#if user.email??>
+    <h3>Use name: <i>${user.name}</i></h3>
+    <form action="/logout" method="post">
+        <input type="hidden" name="_csrf" value="${_csrf.token}">
+        <input type="submit" value="log out">
+    </form>
+<#else >
+    <a href="/login">Enter</a>
+</#if>
+
+
 <h4>goods from all over Ukraine</h4>
 <form action="/" method="get">
     search by ad name:<input type="text" name="title"><br>
@@ -23,18 +31,20 @@
 <#else>
     <h3>No ad</h3>
 </#list>
-<hr>
-<h3>Create new product</h3>
-<form action="/product/create" method="post" enctype="multipart/form-data">
-    ad title: <input type="text" name="title"/><br><br>
-    ad description: <input type="text" name="description"/><br><br>
-    price: <input type="number" name="price"/><br><br>
-    city: <input type="text" name="city"/><br><br>
-    author: <input type="text" name="author"/><br><br>
-    First photo: <input type="file" name="file1"/><br><br>
-    Second photo: <input type="file" name="file2"/><br><br>
-    Third photo: <input type="file" name="file3"/><br><br>
-    <input type="submit" value="Добавить товар"/>
-</form>
+<#if user.email??>
+    <hr>
+    <h3>Create new product</h3>
+    <form action="/product/create" method="post" enctype="multipart/form-data">
+        ad title: <input type="text" name="title"/><br><br>
+        ad description: <input type="text" name="description"/><br><br>
+        price: <input type="number" name="price"/><br><br>
+        city: <input type="text" name="city"/><br><br>
+        First photo: <input type="file" name="file1"/><br><br>
+        Second photo: <input type="file" name="file2"/><br><br>
+        Third photo: <input type="file" name="file3"/><br><br>
+        <input type="hidden" name="_csrf" value="${_csrf.token}"/>
+        <input type="submit" value="Добавить товар"/>
+    </form>
+</#if>
 </body>
 </html>
