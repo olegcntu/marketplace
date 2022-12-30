@@ -14,11 +14,12 @@
         <input type="hidden" name="_csrf" value="${_csrf.token}">
         <input type="submit" value="log out">
     </form>
+    <#if user.isAdmin()>
+        <a href="/admin">admin panel</a>
+    </#if>
 <#else >
     <a href="/login">Enter</a>
 </#if>
-
-
 <h4>goods from all over Ukraine</h4>
 <form action="/" method="get">
     search by ad name:<input type="text" name="title"><br>

@@ -16,7 +16,6 @@
 <b>Description: </b>${product.description}<br>
 <b>Prise: </b>${product.price}<br>
 <b>City: </b>${product.city}<br>
-<b>Author: </b>${product.user.email}<br>
-<b>telephone: </b>${product.user.phoneNumber}<br>
+<b>Author: </b><a href="/user/${product.user.id}">${product.user.email}</a><br>
 </body>
 </html>
