@@ -1,44 +1,33 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>
-        MARKETPLACE
-    </title>
-</head>
-<body>
-<h1>MARKETPLACE</h1>
-<hr>
-
-<h4>admin panel</h4>
-<table border="1">
-    <tr>
-        <th>E-mal</th>
-        <th>Telephone number</th>
-        <th>Active</th>
-        <th>Role</th>
-        <th>Ban</th>
-        <th>Edit</th>
-        <th>detail info</th>
-    </tr>
-    <#list users as user >
+<#import "blocks/template.ftlh" as t>
+<@t.template user>
+    `<h1 style="text-align: center">Панель администратора</h1><hr>
+    <table class="table table-hover table-dark">
         <tr>
-            <th>${user.email}</th>
-            <th>${user.phoneNumber}</th>
-            <th><#if user.active >true<#else>false</#if></th>
-            <th><#list user.roles as role>${role}, </#list></th>
-            <th>
-                <form action="/admin/user/ban/${user.id}" method="post">
-                    <input type="hidden" name="_csrf" value="${_csrf.token}">
-                    <input type="submit" value="Ban">
-                </form>
-            </th>
-            <th><a href="admin/user/edit/${user.id}">edit</a></th>
-            <th><a href="/user/${user.id}">detail</a></th>
+            <th scope="col">Email</th>
+            <th scope="col">Telephone number</th>
+            <th scope="col">Active</th>
+            <th scope="col">Role</th>
+            <th scope="col">Ban</th>
+            <th scope="col">Edit</th>
+            <th scope="col">detail info</th>
         </tr>
-    <#else>
-        <h3>No users</h3>
-    </#list>
-</table>
-<hr>
-</body>
-</html>
+        <#list users as user>
+            <tr>
+                <th>${user.email}</th>
+                <th>${user.phoneNumber}</th>
+                <th><#if user.active>true<#else>false</#if></th>
+                <th><#list user.roles as role>${role}</#list></th>
+                <th>
+                    <form action="/admin/user/ban/${user.id}" method="post">
+                        <input type="hidden" name="_csrf" value="${_csrf.token}">
+                        <input type="submit" class="btn btn-light" value="Ban">
+                    </form>
+                </th>
+                <th><a href="/admin/user/edit/${user.id}">Editing</a></th>
+                <th><a href="/user/${user.id}">detailed information</a></th>
+            </tr>
+        <#else>
+            <h3>No users</h3>
+        </#list>
+    </table>
+</@t.template>

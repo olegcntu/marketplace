@@ -1,21 +1,28 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>MARKETPLACE</title>
-</head>
-<body>
-<h1>MARKETPLACE</h1><hr>
-<h4>Registration</h4>
-<form action="/registration" method="post">
-    User name: <input type="text" name="name"><br><br>
-    E-mail: <input type="email" name="email"><br><br>
-    Telephone number: <input type="text" name="phoneNumber"><br><br>
-    Password: <input type="password" name="password"><br><br>
-    <input type="hidden" name="_csrf" value="${_csrf.token}">
-    <input type="submit" value="Registration"/>
-</form>
-<#if errorMesage??>
-    <h2 style="color: red">{errorMessage}</h2>
-</#if>
-</body>
-</html>
+<#import "blocks/template.ftlh" as t>
+<@t.template user>
+    <h1 style="text-align: center">Register</h1>
+    <hr>
+    <form action="/registration" method="post">
+        <div class="form-group">
+            <label for="name">Username</label>
+            <input type="text" class="form-control" required id="name" name="name">
+        </div>
+        <div class="form-group">
+            <label for="email">E-mail</label>
+            <input type="email" class="form-control" id="email" required name="email">
+        </div>
+        <div class="form-group">
+            <label for="phoneNumber">Phone number</label>
+            <input type="text" class="form-control" id="phoneNumber" required name="phoneNumber">
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" id="password" required name="password">
+        </div>
+        <input type="hidden" name="_csrf" value="${_csrf.token}">
+        <button type="submit" style="width: 100%" class="btn btn-dark">Register</button>
+    </form>
+    <#if errorMessage??>
+        <h2 style="color: red">${errorMessage}</h2>
+    </#if>
+</@t.template>
